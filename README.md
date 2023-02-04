@@ -12,6 +12,7 @@ const cluster = new Cluster(this, 'testCluster', {
   vpc: vpc,
   role: clusterRole,
   version: KubernetesVersion.V1_24,
+  kubectlLayer: new KubectlV24Layer(this, 'KubectlLayer'),
   defaultCapacity: 1
 });
 
