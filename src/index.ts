@@ -8,8 +8,17 @@ import { Construct } from 'constructs';
 import { parseAllDocuments } from 'yaml';
 
 export enum FargateSupportMode {
+  /**
+   * No support for Fargate profile only support EC2
+   */
   NO = 'NO',
+  /**
+   * Only support for Fargate profile no EC2
+   */
   ONLY = 'ONLY',
+  /**
+   * Both support Fargate profile and EC2
+   */
   BOTH = 'BOTH',
 }
 
