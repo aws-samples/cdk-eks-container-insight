@@ -39,7 +39,6 @@ As the above will create a cluster.
 You can clean things up by deleting the deployment and the CDK test stack:
 
 ```sh
-kubectl delete -f test/inflater-deployment.yml
 npx projen test:destroy
 ```
 
