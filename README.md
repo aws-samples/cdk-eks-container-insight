@@ -25,7 +25,7 @@ This will install and configure Container Insight on EC2 managed nodes in your c
 ## Testing
 
 This construct adds a custom task to [projen](https://projen.io/), so you can test a full deployment
-of an EKS cluster with Karpenter installed as specified in `test/integ.karpenter.ts` by running the
+of an EKS cluster with CloudWatch Container Insight installed as specified in `test/integ.containerinsight.ts` by running the
 following:
 
 ```sh
@@ -34,7 +34,11 @@ export CDK_DEFAULT_ACCOUNT=<account id>
 npx projen test:deploy
 ```
 
-As the above will create a cluster.
+And you can valid the construct installation by login in CloudWatch console to 
+
+![](images/pic.png)
+
+As the above will create a cluster. And the Container Insight will show your how cluster information in CloudWatch.
 
 You can clean things up by deleting the deployment and the CDK test stack:
 
