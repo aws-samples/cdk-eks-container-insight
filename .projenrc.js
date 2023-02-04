@@ -13,7 +13,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   bundledDeps: ['yaml'], /* Runtime dependencies of this module. */
   description: 'CDK construct library that allows you enable an AWS EKS cluster for CloudWatch Container Insight', /* The description is just a string that helps people understand the purpose of the package. */
   devDeps: ['@aws-cdk/lambda-layer-kubectl-v24'], /* Build dependencies for this module. */
-  // packageName: undefined,  /* The "name" in package.json. */
+  keywords: ['eks', 'container', 'insight', 'cloudwatch'],
   publishToPypi: {
     distName: PROJECT_NAME,
     module: 'cdk_eks_container_insight',

@@ -70,7 +70,11 @@
     "yaml"
   ],
   "keywords": [
-    "cdk"
+    "cdk",
+    "cloudwatch",
+    "container",
+    "eks",
+    "insight"
   ],
   "main": "lib/index.js",
   "license": "Apache-2.0",
