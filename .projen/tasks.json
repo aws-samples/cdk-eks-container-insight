@@ -145,6 +145,9 @@
       "steps": [
         {
           "spawn": "package:js"
+        },
+        {
+          "spawn": "package:python"
         }
       ]
     },
@@ -157,6 +160,15 @@
         }
       ]
     },
+    "package:python": {
+      "name": "package:python",
+      "description": "Create python language bindings",
+      "steps": [
+        {
+          "exec": "jsii-pacmak -v --target python"
+        }
+      ]
+    },
     "post-compile": {
       "name": "post-compile",
       "description": "Runs after successful compilation",
@@ -165,10 +177,6 @@
           "spawn": "docgen"
         }
       ]
-    },
-    "post-upgrade": {
-      "name": "post-upgrade",
-      "description": "Runs after upgrading dependencies"
     },
     "pre-compile": {
       "name": "pre-compile",
@@ -211,6 +219,30 @@
         }
       ]
     },
+    "test:deploy": {
+      "name": "test:deploy",
+      "steps": [
+        {
+          "exec": "npx cdk deploy -a \"npx ts-node -P tsconfig.dev.json --prefer-ts-exts test/integ.containerinsight.ts\""
+        }
+      ]
+    },
+    "test:destroy": {
+      "name": "test:destroy",
+      "steps": [
+        {
+          "exec": "npx cdk destroy -a \"npx ts-node -P tsconfig.dev.json --prefer-ts-exts test/integ.containerinsight.ts\""
+        }
+      ]
+    },
+    "test:synth": {
+      "name": "test:synth",
+      "steps": [
+        {
+          "exec": "npx cdk synth -a \"npx ts-node -P tsconfig.dev.json --prefer-ts-exts test/integ.containerinsight.ts\""
+        }
+      ]
+    },
     "test:watch": {
       "name": "test:watch",
       "description": "Run jest in watch mode",
@@ -233,45 +265,6 @@
       "steps": [
         {
           "builtin": "release/reset-version"
-        }
-      ]
-    },
-    "upgrade": {
-      "name": "upgrade",
-      "description": "upgrade dependencies",
-      "env": {
-        "CI": "0"
-      },
-      "steps": [
-        {
-          "exec": "yarn upgrade npm-check-updates"
-        },
-        {
-          "exec": "npm-check-updates --dep dev --upgrade --target=minor --reject='aws-cdk-lib,constructs'"
-        },
-        {
-          "exec": "npm-check-updates --dep optional --upgrade --target=minor --reject='aws-cdk-lib,constructs'"
-        },
-        {
-          "exec": "npm-check-updates --dep peer --upgrade --target=minor --reject='aws-cdk-lib,constructs'"
-        },
-        {
-          "exec": "npm-check-updates --dep prod --upgrade --target=minor --reject='aws-cdk-lib,constructs'"
-        },
-        {
-          "exec": "npm-check-updates --dep bundle --upgrade --target=minor --reject='aws-cdk-lib,constructs'"
-        },
-        {
-          "exec": "yarn install --check-files"
-        },
-        {
-          "exec": "yarn upgrade"
-        },
-        {
-          "exec": "npx projen"
-        },
-        {
-          "spawn": "post-upgrade"
         }
       ]
     },
